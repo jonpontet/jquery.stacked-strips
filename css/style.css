@@ -180,6 +180,12 @@ button.stacked-dot.active {
   transform: rotate(90deg);
   border: 1px solid; }
 
+.unf_sm section {
+  position: relative !important; }
+
+.unf_sm .fake-strip {
+  display: none !important; }
+
 /* Required Styles End */
 
 /*# sourceMappingURL=style.css.map */

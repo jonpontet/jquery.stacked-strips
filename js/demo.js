@@ -6,6 +6,7 @@
 			active_position: 70,
 			strip_size : 'full',
 			fixed: true,
+			stackActivationWidth: 900,
 			// after_class : true,
 		};
 

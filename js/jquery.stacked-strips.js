@@ -63,6 +63,14 @@ $.fn.stacked_strips = function (options) {
 				$(this).css({'height': strip_height, 'z-index' : key*10});
 			}
 		});
+		
+		if ( $(window).width()<= options.stackActivationWidth) {
+			$('section').parent().addClass('unf_sm');
+		}
+		else{
+			
+		$('section').parent().removeClass('unf_sm');
+		}
 	}
 
 	// Detect our scrolling position
@@ -153,9 +161,6 @@ $.fn.stacked_strips = function (options) {
 	$(window).on('scroll', detect_scrolling);
 	$(window).on('resize', setup_strips);
 	
-	function dotScroll(){
-		
-	}
 	
 	$('button.stacked-dot').on('click', function() {
 			$('section').css('opacity', 0);
@@ -169,8 +174,7 @@ $.fn.stacked_strips = function (options) {
 	});
 	
 	$('.next-slide-btn button').on('click', function() {
-			//alert(34234);
-			
+				
 			$('.unfixed')[0].scrollIntoView();
 			
 			
