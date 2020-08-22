@@ -162,15 +162,17 @@ $.fn.stacked_strips = function (options) {
 			//$('section').fadeOut();
 			$('.container')[0].scrollIntoView();
 			
-			//$('.fake-strip').remove();
-			//console.log($('button.stacked-dot').index(this));
-			//alert("before scroll to "+$('button.stacked-dot').index(this));
-			
-			//$('section:eq('+$('button.stacked-dot').index(this)+')')[0].scrollIntoView();
-			
-			//setTimeout(() => {$('section:eq('+$('button.stacked-dot').index(this)+')')[0].scrollIntoView();$('section').show();}, 0);
-			setTimeout(() =>{console.log($('button.stacked-dot').index(this));$('section:eq('+$('button.stacked-dot').index(this)+')')[0].scrollIntoView();
+			setTimeout(() =>{$('section:eq('+$('button.stacked-dot').index(this)+')')[0].scrollIntoView();
 			$('section').animate({opacity: 1}, 1000, 'linear');}, 100);
+			
+			
+	});
+	
+	$('.next-slide-btn button').on('click', function() {
+			//alert(34234);
+			
+			$('.unfixed')[0].scrollIntoView();
+			
 			
 			
 	});

@@ -167,6 +167,19 @@ button.stacked-dot.active {
 .stacked-dots .stacked-dot.active span, .stacked-dots .stacked-dot:hover span {
   background: #869791; }
 
+.next-slide-btn button {
+  margin-left: 48vw;
+  position: fixed;
+  margin-top: 75vh;
+  z-index: 400;
+  font-size: 47px;
+  padding-bottom: 10px;
+  background: transparent;
+  color: white;
+  border-radius: 6px;
+  transform: rotate(90deg);
+  border: 1px solid; }
+
 /* Required Styles End */
 
 /*# sourceMappingURL=style.css.map */
