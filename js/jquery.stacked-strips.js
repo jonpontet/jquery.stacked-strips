@@ -68,8 +68,7 @@ $.fn.stacked_strips = function (options) {
 			$('section').parent().addClass('unf_sm');
 		}
 		else{
-			
-		$('section').parent().removeClass('unf_sm');
+			$('section').parent().removeClass('unf_sm');
 		}
 	}
 
@@ -77,6 +76,21 @@ $.fn.stacked_strips = function (options) {
 	function detect_scrolling() {
 		scroll_top = $(window).scrollTop();
 	}
+	
+	function setup_navigation(){
+		let dots_div=$(options.navSelector);
+		for(let i=0; i<$('section').length;i++){
+			$("<button class='stacked-dot'><span></span></button>").appendTo(dots_div);
+		}
+		$(document).on('click', '.stacked-dot', function(){
+			$('section').css('opacity', 0);
+			$('.container')[0].scrollIntoView();
+			
+			setTimeout(() =>{$('section:eq('+$('button.stacked-dot').index(this)+')')[0].scrollIntoView();
+			$('section').animate({opacity: 1}, 1000, 'linear');}, 100);
+
+		});
+	 }
 
 	function set_strip_classes(element, this_offset, index) {
 		var el_height = element.outerHeight(),
@@ -162,16 +176,15 @@ $.fn.stacked_strips = function (options) {
 	$(window).on('resize', setup_strips);
 	
 	
-	$('button.stacked-dot').on('click', function() {
+/*	$('button.stacked-dot').on('click', function() {
 			$('section').css('opacity', 0);
-			//$('section').fadeOut();
 			$('.container')[0].scrollIntoView();
 			
 			setTimeout(() =>{$('section:eq('+$('button.stacked-dot').index(this)+')')[0].scrollIntoView();
 			$('section').animate({opacity: 1}, 1000, 'linear');}, 100);
 			
 			
-	});
+	});*/
 	
 	$('.next-slide-btn button').on('click', function() {
 				
@@ -186,6 +199,7 @@ $.fn.stacked_strips = function (options) {
 
 	sanitize_options();
 	setup_strips();
+	setup_navigation();
 
 	return this.each(function (e) {
 		var $this = $(this),
