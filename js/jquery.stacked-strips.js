@@ -78,18 +78,31 @@ $.fn.stacked_strips = function (options) {
 	}
 	
 	function setup_navigation(){
-		let dots_div=$(options.navSelector);
-		for(let i=0; i<$('section').length;i++){
-			$("<button class='stacked-dot'><span></span></button>").appendTo(dots_div);
-		}
-		$(document).on('click', '.stacked-dot', function(){
-			$('section').css('opacity', 0);
-			$('.container')[0].scrollIntoView();
-			
-			setTimeout(() =>{$('section:eq('+$('button.stacked-dot').index(this)+')')[0].scrollIntoView();
-			$('section').animate({opacity: 1}, 1000, 'linear');}, 100);
+		if (options.showNav){
+			let dots_div=$(options.navSelector);
+			for(let i=0; i<$('section').length;i++){
+				$('<li class="menu__item"><a href="#s'+(i+1)+'" class="menu__link" title="Section '+(i+1)+'"><span class="menu__text sr-only">Section '+(i+1)+'</span></a></li>').appendTo(dots_div);
+			}
+			$(document).on('click', '.menu__link', function(){
+				$('section').css('opacity', 0);
+				//$('.container')[0].scrollIntoView();
+				
+				setTimeout(() =>{$('section:eq('+$('.menu__link').index(this)+')')[0].scrollIntoView();
+				$('section').animate({opacity: 1}, 1000, 'linear');}, 100);
 
-		});
+			});
+		};
+		
+		if (options.showNextSlideButton){
+			//next page button
+			let next_page_div=$(options.nextSlideButtonSelector);
+			$('<button class="next-slide"><span class="next-slide__text sr-only">Next section</span></button>').appendTo(next_page_div);
+
+			$(document).on('click', '.next-slide', function(){
+				$('.unfixed')[0].scrollIntoView();
+
+			});
+		}
 	 }
 
 	function set_strip_classes(element, this_offset, index) {
@@ -186,13 +199,13 @@ $.fn.stacked_strips = function (options) {
 			
 	});*/
 	
-	$('.next-slide-btn button').on('click', function() {
+	/*/$('.next-slide-btn button').on('click', function() {
 				
 			$('.unfixed')[0].scrollIntoView();
 			
 			
 			
-	});
+	});*/
 	
 	
 

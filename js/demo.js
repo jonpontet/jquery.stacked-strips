@@ -7,11 +7,11 @@
 			strip_size : 'full',
 			fixed: true,
 			stackActivationWidth: 900,
-			showNav: true,
+			showNav: false,
 			navSelector:".stacked-dots",
 			showNextSlideButton: true,
 			nextSlideButtonSelector: ".next-slide-btn",
-			// after_class : true,
+			
 		};
 
 		$('section').stacked_strips(options);
