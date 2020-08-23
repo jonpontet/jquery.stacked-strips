@@ -7,8 +7,6 @@
 			strip_size : 'full',
 			fixed: true,
 			stackActivationWidth: 900,
-			showNav: false,
-			navSelector:".stacked-dots",
 			showNextSlideButton: true,
 			nextSlideButtonSelector: ".next-slide-btn",
 			

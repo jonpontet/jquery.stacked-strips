@@ -37,6 +37,14 @@ $.fn.stacked_strips = function (options) {
     if (options.fixed === undefined) {
       options.fixed = true;
     }
+
+    if (options.showNav === undefined) {
+      options.showNav = true;
+    }
+
+    if (options.navSelector === undefined) {
+      options.navSelector = '#top-nav';
+    }
   }
 
   // Build function to setup the strips
@@ -77,23 +85,27 @@ $.fn.stacked_strips = function (options) {
   }
 
   function setup_navigation() {
-    if (options.showNav) {
-      let dots_div = $(options.navSelector);
-      for (let i = 0; i < $('section').length; i++) {
-        $('<li class="menu__item"><a href="#s' + (i + 1) + '" class="menu__link" title="Section ' + (i + 1) + '"><span class="menu__text sr-only">Section ' + (i + 1) + '</span></a></li>').appendTo(dots_div);
-      }
-      $(document).on('click', '.menu__link', function () {
-        $('section').css('opacity', 0);
-        //$('.container')[0].scrollIntoView();
+    let sectionsLength = $('section').length;
+    if (options.showNav && sectionsLength) {
+      let dots_div = $(options.navSelector).html(''),
+        $navUL = $('<ul class="jsd-nav">');
 
+      for (let i = 0; i < sectionsLength; i++) {
+        $('<li class="jsd-nav__item"><a href="#s' + (i + 1) + '" class="jsd-nav__link" title="Section ' + (i + 1) + '"><span class="jsd-nav__text sr-only">Section ' + (i + 1) + '</span></a></li>')
+          .appendTo($navUL);
+      }
+
+      dots_div.append($navUL);
+
+      $('.jsd-nav__link').on('click', function (e) {
+        e.preventDefault();
+        $('section').css('opacity', 0);
         setTimeout(() => {
-          $('section:eq(' + $('.menu__link').index(this) + ')')[0].scrollIntoView();
+          $('section:eq(' + $('.jsd-nav__link').index(this) + ')')[0].scrollIntoView();
           $('section').animate({opacity: 1}, 1000, 'linear');
         }, 100);
-
       });
     }
-    ;
 
     if (options.showNextSlideButton) {
       //next page button
