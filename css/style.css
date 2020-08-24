@@ -154,7 +154,14 @@ header {
 }
 
 footer {
-  background-color: white;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 999;
+  bottom: 28px;
+  left: 28px;
+  right: 28px;
+  height: 54px;
 }
 
 footer p {
@@ -227,7 +234,7 @@ footer p a:hover {
   background-position: 0 0;
 }
 
-.next-slide {
+.jsd-next-slide {
   border: none;
   background: none;
   width: 25px;
