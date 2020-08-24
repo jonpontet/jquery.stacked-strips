@@ -1,6 +1,7 @@
 $.fn.stacked_strips = function (options) {
 
-  var strips = this,
+  var options = options || {},
+    strips = this,
     strips_length = strips.length,
     strip_height,
     window_height = $(window).height(),
@@ -44,6 +45,18 @@ $.fn.stacked_strips = function (options) {
 
     if (options.navSelector === undefined) {
       options.navSelector = '#top-nav';
+    }
+
+    if (options.showNextSlideButton === undefined) {
+      options.showNextSlideButton = true;
+    }
+
+    if (options.nextSlideButtonSelector === undefined) {
+      options.nextSlideButtonSelector = '#next-slide';
+    }
+
+    if (options.stackActivationWidth === undefined || $.type(options.stackActivationWidth) !== 'number') {
+      options.stackActivationWidth = 781;
     }
   }
 
@@ -97,30 +110,26 @@ $.fn.stacked_strips = function (options) {
 
       dots_div.append($navUL);
 
-	$(document).on('click', '.jsd-nav__link', function(e){
+      $(document).on('click', '.jsd-nav__link', function (e) {
         e.preventDefault();
         $('section').css('opacity', 0);
         setTimeout(() => {
-			$('section').parent().addClass('unf_sm');
+          $('section').parent().addClass('unf_sm');
           $('section:eq(' + $('.jsd-nav__link').index(this) + ')')[0].scrollIntoView();
-		  //alert("gt"+$('.jsd-nav__link').index(this));
           $('section').animate({opacity: 1}, 1000, 'linear');
-		  $('section').parent().removeClass('unf_sm');
+          $('section').parent().removeClass('unf_sm');
         }, 100);
       });
-	  
-	  
-	} 
-    
+    }
+
 
     if (options.showNextSlideButton) {
       //next page button
       let next_page_div = $(options.nextSlideButtonSelector);
-      $('<button class="next-slide"><span class="next-slide__text sr-only">Next section</span></button>').appendTo(next_page_div);
+      $('<button class="jsd-next-slide"><span class="jsd-next-slide__text sr-only">Next section</span></button>').appendTo(next_page_div);
 
-      $(document).on('click', '.next-slide', function () {
+      $(document).on('click', '.jsd-next-slide', function () {
         $('.unfixed')[0].scrollIntoView();
-
       });
     }
   }
@@ -207,26 +216,6 @@ $.fn.stacked_strips = function (options) {
 
   $(window).on('scroll', detect_scrolling);
   $(window).on('resize', setup_strips);
-
-
-  /*	$('button.stacked-dot').on('click', function() {
-        $('section').css('opacity', 0);
-        $('.container')[0].scrollIntoView();
-
-        setTimeout(() =>{$('section:eq('+$('button.stacked-dot').index(this)+')')[0].scrollIntoView();
-        $('section').animate({opacity: 1}, 1000, 'linear');}, 100);
-
-
-    });*/
-
-  /*/$('.next-slide-btn button').on('click', function() {
-
-      $('.unfixed')[0].scrollIntoView();
-
-
-
-  });*/
-
 
   sanitize_options();
   setup_strips();
