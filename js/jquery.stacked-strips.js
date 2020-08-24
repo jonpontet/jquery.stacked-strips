@@ -98,12 +98,14 @@ $.fn.stacked_strips = function (options) {
       dots_div.append($navUL);
 
 	$(document).on('click', '.jsd-nav__link', function(e){
-    //  $('.jsd-nav__link').on('click', function (e) {
         e.preventDefault();
         $('section').css('opacity', 0);
         setTimeout(() => {
+			$('section').parent().addClass('unf_sm');
           $('section:eq(' + $('.jsd-nav__link').index(this) + ')')[0].scrollIntoView();
+		  //alert("gt"+$('.jsd-nav__link').index(this));
           $('section').animate({opacity: 1}, 1000, 'linear');
+		  $('section').parent().removeClass('unf_sm');
         }, 100);
       });
 	  
