@@ -97,7 +97,8 @@ $.fn.stacked_strips = function (options) {
 
       dots_div.append($navUL);
 
-      $('.jsd-nav__link').on('click', function (e) {
+	$(document).on('click', '.jsd-nav__link', function(e){
+    //  $('.jsd-nav__link').on('click', function (e) {
         e.preventDefault();
         $('section').css('opacity', 0);
         setTimeout(() => {
@@ -105,7 +106,10 @@ $.fn.stacked_strips = function (options) {
           $('section').animate({opacity: 1}, 1000, 'linear');
         }, 100);
       });
-    }
+	  
+	  
+	} 
+    
 
     if (options.showNextSlideButton) {
       //next page button
